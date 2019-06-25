@@ -1,0 +1,31 @@
+- name: Create group
+  group:
+    name: "{{ retropie_group }}"
+  tags:
+    - retropie
+
+- name: Create user
+  user:
+    name: "{{ retropie_user }}"
+    group: "{{ retropie_group }}"
+  register: user_info
+  tags:
+    - retropie
+
+- name: Install git
+  apt:
+    name: git
+    state: present
+    update_cache: yes
+    cache_valid_time: 90
+  tags:
+    - retropie
+
+- name: Clone repo
+  git:
+    repo: "{{ retropie_git_repo }}"
+    dest: "{{ user_info.home ~ '/RetroPie' }}"
+    depth: 1
+    version: "{{ retropie_version }}"
+  become: yes
+  become_user: retropie

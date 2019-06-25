@@ -1,0 +1,22 @@
+galaxy_info:
+  role_name: retropie
+  author: Sam Doran
+  description: Turn your Pi into a retro gaming console with RetroPie
+  license: Apache 2.0
+  min_ansible_version: 2.7
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
+
+    - name: Debian
+      versions:
+        - stretch
+        - jessie
+
+  galaxy_tags:
+    - games
+    - gaming
+    - retropie

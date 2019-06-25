@@ -1,0 +1,4 @@
+retropie_user: retropie
+retropie_group: retropie
+retropie_git_repo: https://github.com/RetroPie/RetroPie-Setup.git
+retropie_version: HEAD
