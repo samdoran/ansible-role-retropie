@@ -19,6 +19,7 @@ Role Variables
 |-------------------|---------------------|----------------------|
 | `retropie_user` | `retropie` | User account where RetroPie will be cloned and that will run RetroPie. |
 | `retropie_group` | `retropie` | Group for `retropie_user` |
+| `retropie_extra_groups` | `[sudo]` | Extra groups `{{ retropie_user }}` will be added to. |
 | `retropie_git_repo` | `https://github.com/RetroPie/RetroPie-Setup.git` | URL to download RetroPie from. |
 | `retropie_version` | `HEAD` | Version to checkout |
 

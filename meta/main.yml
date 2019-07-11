@@ -15,6 +15,7 @@ galaxy_info:
       versions:
         - stretch
         - jessie
+        - buster
 
   galaxy_tags:
     - games

@@ -8,6 +8,8 @@
   user:
     name: "{{ retropie_user }}"
     group: "{{ retropie_group }}"
+    append: yes
+    groups: "{{ retropie_extra_groups }}"
   register: user_info
   tags:
     - retropie
@@ -29,3 +31,13 @@
     version: "{{ retropie_version }}"
   become: yes
   become_user: retropie
+  tags:
+    - retropie
+
+- name: Install extra packages
+  action: "{{ ansible_facts.pkg_mgr }}"
+  args:
+    name: "{{ retropie_extra_packages }}"
+    state: latest
+  tags:
+    - retropie
