@@ -33,6 +33,7 @@
   become_user: retropie
   tags:
     - retropie
+    - update
 
 - name: Install extra packages
   action: "{{ ansible_facts.pkg_mgr }}"
@@ -41,6 +42,7 @@
     state: latest
   tags:
     - retropie
+    - packages
 
 - name: Set locale
   locale:
@@ -48,3 +50,63 @@
   tags:
     - retropie
     - locale
+    - config
+
+- name: Set alternatives
+  alternatives:
+    name: editor
+    path: /usr/bin/vim
+  tags:
+    - retropie
+    - alternatives
+    - config
+
+- name: Copy getty@tty1 service file
+  template:
+    src: getty@tty1.service.j2
+    dest: /lib/systemd/system/getty@.service
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart tty1
+  tags:
+    - retropie
+    - config
+
+- name: Disable screen blanking in console
+  blockinfile:
+    dest: /media/boot/boot.ini
+    insertbefore: '^setenv bootargs'
+    block: |
+      setenv RetroPie "no_console_suspend consoleblank=0"
+
+      # --- CPU Governor Setup ---
+      # Uncomment only one line. New governor is set after 90secs after boot.
+      # ------------------------------------------
+      # - Performance (Keep all the CPU's at Maximum frequency)
+      # setenv governor "performance"
+      # ------------------------------------------
+      # - Ondemand (recommended)
+      setenv governor "ondemand"
+  notify: restart system
+  tags:
+    - retropie
+    - config
+
+- name: Disable screen blanking in console
+  lineinfile:
+    state: present
+    dest: /media/boot/boot.ini
+    regexp: '^setenv bootargs'
+    line: 'setenv bootargs "${bootrootfs} ${videoconfig} ${hdmi_phy_control} ${hud_quirks} smsc95xx.macaddr=${macaddr} ${external_watchdog} governor=${governor} ${RetroPie}"'
+  notify: restart system
+  tags:
+    - retropie
+    - config
+
+- name: Set timezone
+  timezone:
+    name: "{{ retropie_timezone }}"
+    value:
+  tags:
+    -

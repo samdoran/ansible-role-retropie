@@ -21,6 +21,7 @@ Role Variables
 | `retropie_group` | `retropie` | Group for `retropie_user` |
 | `retropie_extra_groups` | `[sudo]` | Extra groups `{{ retropie_user }}` will be added to. |
 | `retropie_git_repo` | `https://github.com/RetroPie/RetroPie-Setup.git` | URL to download RetroPie from. |
+| `retropie_timezone` | `America/New_York` | Timezone to set the system to. |
 | `retropie_version` | `HEAD` | Version to checkout |
 
 
