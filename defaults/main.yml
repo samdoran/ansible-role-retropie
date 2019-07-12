@@ -4,5 +4,6 @@ retropie_git_repo: https://github.com/RetroPie/RetroPie-Setup.git
 retropie_version: HEAD
 retropie_extra_packages:
   - pkg-config
+  - language-pack-en-base
 retropie_extra_groups:
   - sudo

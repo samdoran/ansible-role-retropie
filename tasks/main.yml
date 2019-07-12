@@ -41,3 +41,10 @@
     state: latest
   tags:
     - retropie
+
+- name: Set locale
+  locale:
+  notify: restart system
+  tags:
+    - retropie
+    - locale
