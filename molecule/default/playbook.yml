@@ -7,5 +7,28 @@
           Testing with Ansible {{ ansible_version.full }} using Python {{ ansible_facts.python_version }}
           on {{ ansible_facts.distribution }} {{ ansible_facts.distribution_version }}
 
+    - name: Install vim
+      apt:
+        name: vim
+        update_cache: yes
+        state: present
+
+    - name: Check for /media/boot
+      stat:
+        path: /media/boot
+      register: boot
+
+    - name: Create file
+      file:
+        path: "{{ item.path }}"
+        state: "{{ item.state }}"
+      loop:
+        - path: /media/boot
+          state: directory
+
+        - path: /media/boot/boot.ini
+          state: touch
+      when: not boot.stat.exists
+
     - import_role:
         name: retropie

@@ -109,4 +109,6 @@
     name: "{{ retropie_timezone }}"
     value:
   tags:
-    -
+    - retropie
+    - timezone
+    - notest

@@ -6,5 +6,7 @@ retropie_timezone: America/New_York
 retropie_extra_packages:
   - pkg-config
   - language-pack-en-base
+  - libsdl2-dev
+  - xorg
 retropie_extra_groups:
   - sudo
