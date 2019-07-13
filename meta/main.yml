@@ -11,12 +11,6 @@ galaxy_info:
         - trusty
         - xenial
 
-    - name: Debian
-      versions:
-        - stretch
-        - jessie
-        - buster
-
   galaxy_tags:
     - games
     - gaming

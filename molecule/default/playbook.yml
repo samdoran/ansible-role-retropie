@@ -13,12 +13,12 @@
         update_cache: yes
         state: present
 
-    - name: Check for /media/boot
+    - name: TEST PREP | Check for /media/boot
       stat:
         path: /media/boot
       register: boot
 
-    - name: Create file
+    - name: TEST PREP | Create file
       file:
         path: "{{ item.path }}"
         state: "{{ item.state }}"

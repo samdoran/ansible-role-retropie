@@ -1,9 +1,10 @@
 - name: restart tty1
   systemd:
     daemon_reload: yes
-    name: restart getty@tty1
+    name: getty@tty1
     state: restarted
     enabled: yes
 
 - name: restart system
   reboot:
+  when: ansible_facts.virtualization_type != 'docker'
