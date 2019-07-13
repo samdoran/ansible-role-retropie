@@ -7,11 +7,18 @@
           Testing with Ansible {{ ansible_version.full }} using Python {{ ansible_facts.python_version }}
           on {{ ansible_facts.distribution }} {{ ansible_facts.distribution_version }}
 
-    - name: Install vim
+    - name: TEST PREP | Install vim
       apt:
         name: vim
         update_cache: yes
         state: present
+
+    - name: TEST PREP | Create groups
+      group:
+        name: "{{ item }}"
+      loop:
+        - input
+        - video
 
     - name: TEST PREP | Check for /media/boot
       stat:

@@ -111,3 +111,10 @@
     - retropie
     - timezone
     - notest
+
+- debug:
+    msg: |
+      RetroPie successfully installed
+      Follow platform specific instructions to complete setup: https://retropie.org.uk/docs/Debian/
+  tags:
+    - retropie
