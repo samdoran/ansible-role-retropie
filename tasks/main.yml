@@ -107,7 +107,6 @@
 - name: Set timezone
   timezone:
     name: "{{ retropie_timezone }}"
-    value:
   tags:
     - retropie
     - timezone

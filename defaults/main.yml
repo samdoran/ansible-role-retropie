@@ -10,3 +10,5 @@ retropie_extra_packages:
   - xorg
 retropie_extra_groups:
   - sudo
+  - input
+  - video
