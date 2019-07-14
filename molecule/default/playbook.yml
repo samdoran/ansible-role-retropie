@@ -1,15 +1,24 @@
 - hosts: all
   become: true
 
+  vars:
+    retropie_extra_packages:
+      - language-pack-en-base
+      - libsdl2-dev
+      - mplayer
+      - pkg-config
+
   tasks:
     - debug:
         msg: >-
           Testing with Ansible {{ ansible_version.full }} using Python {{ ansible_facts.python_version }}
           on {{ ansible_facts.distribution }} {{ ansible_facts.distribution_version }}
 
-    - name: TEST PREP | Install vim
+    - name: TEST PREP | Install packages
       apt:
-        name: vim
+        name:
+          - apt-utils
+          - vim
         update_cache: yes
         state: present
 
@@ -25,7 +34,7 @@
         path: /media/boot
       register: boot
 
-    - name: TEST PREP | Create file
+    - name: TEST PREP | Create /media/boot
       file:
         path: "{{ item.path }}"
         state: "{{ item.state }}"
