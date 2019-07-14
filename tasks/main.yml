@@ -104,6 +104,15 @@
     - retropie
     - config
 
+- name: Stop and disable lightdm
+  service:
+    name: lightdm
+    state: stopped
+    enabled: no
+  tags:
+    - retropie
+    - notest
+
 - name: Set timezone
   timezone:
     name: "{{ retropie_timezone }}"
