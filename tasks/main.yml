@@ -10,6 +10,7 @@
     group: "{{ retropie_group }}"
     append: yes
     groups: "{{ retropie_extra_groups }}"
+    shell: /bin/bash
   register: user_info
   tags:
     - retropie
@@ -30,7 +31,7 @@
     depth: 1
     version: "{{ retropie_version }}"
   become: yes
-  become_user: retropie
+  become_user: "{{ retropie_user }}"
   tags:
     - retropie
     - update
@@ -64,7 +65,7 @@
 - name: Copy getty@tty1 service file
   template:
     src: getty@tty1.service.j2
-    dest: /lib/systemd/system/getty@.service
+    dest: /lib/systemd/system/getty@tty1.service
     owner: root
     group: root
     mode: '0644'
@@ -119,6 +120,13 @@
   tags:
     - retropie
     - timezone
+    - notest
+
+- name: Set default target
+  shell: systemctl set-default multi-user.target
+  tags:
+    - retropie
+    - config
     - notest
 
 - debug:
