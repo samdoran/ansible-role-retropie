@@ -1,7 +1,5 @@
 Retropie
 =========
-[![Galaxy](https://img.shields.io/badge/galaxy-samdoran.retropie-blue.svg?style=flat)](https://galaxy.ansible.com/samdoran/retropie)
-[![Build Status](https://travis-ci.org/samdoran/ansible-role-retropie.svg?branch=master)](https://travis-ci.org/samdoran/ansible-role-retropie)
 
 Setup [RetroPie](https://retropie.org.uk) to turn a Pi into a retro gaming station.
 
